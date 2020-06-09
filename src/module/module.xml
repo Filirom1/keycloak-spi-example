@@ -8,6 +8,7 @@
         <module name="org.keycloak.keycloak-server-spi-private" services="import"/>
         <module name="org.keycloak.keycloak-services" services="import"/>
         <module name="org.keycloak.keycloak-saml-core" services="import"/>
+        <module name="org.keycloak.keycloak-saml-core-public" services="import"/>
         <module name="org.keycloak.keycloak-core"/>
     </dependencies>
 </module>
