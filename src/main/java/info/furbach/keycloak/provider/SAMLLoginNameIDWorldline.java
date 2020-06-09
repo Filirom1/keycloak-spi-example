@@ -24,7 +24,7 @@ import org.jboss.logging.Logger;
 import org.keycloak.dom.saml.v2.assertion.NameIDType;
 import org.keycloak.dom.saml.v2.protocol.ResponseType;
 import org.keycloak.dom.saml.v2.protocol.ResponseType.RTChoiceType;
-import org.keycloak.models.ClientSessionContext;
+import org.keycloak.models.AuthenticatedClientSessionModel;
 import org.keycloak.models.KeycloakSession;
 import org.keycloak.models.ProtocolMapperModel;
 import org.keycloak.models.UserModel;
@@ -75,7 +75,7 @@ public class SAMLLoginNameIDWorldline extends AbstractSAMLProtocolMapper impleme
     @Override
     public ResponseType transformLoginResponse(ResponseType response,
             ProtocolMapperModel mappingModel, KeycloakSession session,
-            UserSessionModel userSession, ClientSessionContext clientSessionCtx) {
+            UserSessionModel userSession, AuthenticatedClientSessionModel clientSession) {
         UserModel user = userSession.getUser();
         String attributeValue = user.getEmail().replaceAll("@.*", "@worldline.com");
         for (RTChoiceType rtChoiceType : response.getAssertions()) {
