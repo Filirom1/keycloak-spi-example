@@ -14,18 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package info.furbach.keycloak.provider;
 
-package org.keycloak.protocol.saml.mappers;
+import org.keycloak.protocol.saml.mappers.*;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import org.jboss.logging.Logger;
-import org.keycloak.dom.saml.v2.assertion.AudienceRestrictionType;
+import org.keycloak.dom.saml.v2.assertion.NameIDType;
 import org.keycloak.dom.saml.v2.protocol.ResponseType;
+import org.keycloak.dom.saml.v2.protocol.ResponseType.RTChoiceType;
 import org.keycloak.models.ClientSessionContext;
 import org.keycloak.models.KeycloakSession;
 import org.keycloak.models.ProtocolMapperModel;
+import org.keycloak.models.UserModel;
 import org.keycloak.models.UserSessionModel;
 import org.keycloak.provider.ProviderConfigProperty;
 
@@ -75,7 +77,7 @@ public class SAMLLoginNameIDWorldline extends AbstractSAMLProtocolMapper impleme
             ProtocolMapperModel mappingModel, KeycloakSession session,
             UserSessionModel userSession, ClientSessionContext clientSessionCtx) {
         UserModel user = userSession.getUser();
-        String attributeValue = user.getEmail();
+        String attributeValue = user.getEmail().replaceAll("@.*", "@worldline.com");
         for (RTChoiceType rtChoiceType : response.getAssertions()) {
             NameIDType nameIDType = (NameIDType) rtChoiceType.getAssertion().getSubject().getSubType().getBaseID();
             nameIDType.setValue(attributeValue);
