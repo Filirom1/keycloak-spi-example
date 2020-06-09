@@ -40,7 +40,7 @@ import org.keycloak.provider.ProviderConfigProperty;
  */
 public class SAMLLoginNameIDWorldline extends AbstractSAMLProtocolMapper implements SAMLLoginResponseMapper {
 
-    protected static final Logger logger = Logger.getLogger(SAMLAudienceProtocolMapper.class);
+    protected static final Logger logger = Logger.getLogger(SAMLLoginNameIDWorldline.class);
 
     public static final String PROVIDER_ID = "saml-nameid-worldline";
 
